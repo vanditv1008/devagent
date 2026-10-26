@@ -1,0 +1,26 @@
+{
+  "name": "devagent",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "devagent": "./index.ts"
+  },
+  "scripts": {
+    "typecheck": "bun check"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.4",
+    "@types/node": "^26.6.5"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  },
+  "dependencies": {
+    "@clack/core": "^1.5.1",
+    "@clack/prompts": "^1.8.1",
+    "chalk": "^6.0.1",
+    "commander": "^15.0.0",
+    "figlet": "^1.12.0"
+  }
+}
