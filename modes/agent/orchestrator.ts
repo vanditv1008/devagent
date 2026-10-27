@@ -1,4 +1,5 @@
 import { isCancel, text } from "@clack/prompts";
+import { ActionTracker } from "./actiontracker";
 import chalk from "chalk";
 import { defaultAgentConfig } from "./types";
 export async function runAgentMode() {
@@ -11,5 +12,7 @@ export async function runAgentMode() {
   if(isCancel(goal)|| !goal.trim()) return;
 
   const config=defaultAgentConfig();
+  const tracker=new ActionTracker();
 
+  const executor=new ToolExecutor(tracker,config);
 }
