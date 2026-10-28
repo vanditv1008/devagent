@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import {select,isCancel} from "@clack/prompts";
+import { runAgentMode } from "./agent/orchestrator";
 
 
 
@@ -18,7 +19,7 @@ export async function runCliMode() {
         return;
     }
     if(mode==="agent"){
-        
+        await runAgentMode();
     }
     if(mode==="ask"){
 
