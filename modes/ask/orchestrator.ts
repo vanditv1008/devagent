@@ -8,6 +8,7 @@ import { ToolExecutor } from "../agent/tool-executor.ts";
 import { defaultAgentConfig } from "../agent/types.ts";
 import { renderTerminalMarkdown } from "../../tui/terminal-md.ts";
 import { runApprovalFlow } from "../agent/approval.ts";
+import { createWebTools } from "../plan/webtools.ts";
 
 
 
@@ -96,6 +97,7 @@ export async function runAskMode(){
 
   const tools = {
     ...createAskTools(executor),
+    ...createWebTools(tracker),
 
   };
 

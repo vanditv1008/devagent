@@ -13,7 +13,7 @@ import { ActionTracker } from "../agent/actiontracker.ts";
 import { ToolExecutor } from "../agent/tool-executor.ts";
 import { defaultAgentConfig } from "../agent/types.ts";
 import type { Plan, PlanStep } from "./types.ts";
-import { createWebTools } from "./web-tools.ts";
+import { createWebTools } from "./webtools.ts";
 
 
 const planSchema = z.object({
@@ -111,7 +111,7 @@ export async function generatePlan(goal:string){
   const config=defaultAgentConfig();
   const tracker=new ActionTracker();
   const executor=new ToolExecutor(tracker,config);
-const hasweb=false;
+const hasweb=!!process.env.FIRECRAWL_API_KEY;//TYPE CASTE TO BOOLEAN
 const model=wrapLanguageModel({
   model:getAgentModel(),
   middleware:extractJsonMiddleware()
@@ -119,7 +119,8 @@ const model=wrapLanguageModel({
 
 //web search tools
 
-  const tools={...readOnlyTools(executor)};
+  const tools={...readOnlyTools(executor),...(hasweb ? createWebTools(tracker):{})};
+
 
   console.log(chalk.cyan("\n🔍 Researching & drafting a plan…\n"));
 //output must tell about planschema
