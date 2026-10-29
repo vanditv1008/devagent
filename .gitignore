@@ -33,8 +33,9 @@ report.*.json
 .cache/
 *.tsbuildinfo
 
-# IntelliJ based IDEs
+# IDEs & Editors
 .idea/
+.vscode/
 
 # OS-generated files
 .DS_Store
